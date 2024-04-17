@@ -1,0 +1,7 @@
+/var/seatodaysrt/srt-server-alatra/CMakeFiles/srt-server.dir
+/var/seatodaysrt/srt-server-alatra/CMakeFiles/edit_cache.dir
+/var/seatodaysrt/srt-server-alatra/CMakeFiles/rebuild_cache.dir
+/var/seatodaysrt/srt-server-alatra/CMakeFiles/list_install_components.dir
+/var/seatodaysrt/srt-server-alatra/CMakeFiles/install.dir
+/var/seatodaysrt/srt-server-alatra/CMakeFiles/install/local.dir
+/var/seatodaysrt/srt-server-alatra/CMakeFiles/install/strip.dir
