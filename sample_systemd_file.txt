@@ -1,0 +1,57 @@
+srtserver.service
+[Unit]
+Description=SRT Server
+After=network-online.target
+Wants=network-online.target
+[Service]
+User=root
+ExecStart=/var/locationapp/script_listener.sh
+Restart=on-failure  # Optional: Restart the script if it fails
+StandardOutput=append:/var/locationapp/log_listener/log_listener.log
+StandardError=append:/var/locationapp/log_listener/log_listener.log
+[Install]
+WantedBy=multi-user.target
+WantedBy=ffmpeg_srt.service
+
+srtserver_backup.service
+[Unit]
+Description=SRT Backup Server
+After=network-online.target
+Wants=network-online.target
+[Service]
+User=root
+ExecStart=/var/locationapp/script_listener_backup.sh
+Restart=on-failure  # Optional: Restart the script if it fails
+[Install]
+WantedBy=multi-user.target
+WantedBy=ffmpeg_srt_backup.service
+
+
+
+ffmpeg_srt.service
+[Unit]
+Description=FFMPEG Server
+Requires=srtserver.service
+After=srtserver.service
+[Service]
+User=root
+ExecStart=/var/locationapp/script_ffmpeg.sh
+Restart=on-failure  # Optional: Restart the script if it fails
+StandardOutput=append:/var/locationapp/log_ffmpeg/log_ffmpeg.log
+StandardError=append:/var/locationapp/log_ffmpeg/log_ffmpeg.log
+[Install]
+WantedBy=multi-user.target
+
+
+
+ffmpeg_srt_backup.service
+[Unit]
+Description=FFMPEG Backup Server
+Requires=srtserver_backup.service
+After=srtserver_backup.service
+[Service]
+User=root
+ExecStart=/var/locationapp/script_ffmpeg_backup.sh
+Restart=on-failure  # Optional: Restart the script if it fails
+[Install]
+WantedBy=multi-user.target
